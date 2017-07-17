@@ -9,4 +9,5 @@ dist-product
 npm-debug.log
 
 #custom
+.DS_Store
 gulpfile.js
