@@ -1,13 +1,18 @@
-#stock
 .sass-cache
+
 bower_components
+
 node_modules
+
 src
+
 understrap.zip
+
 dist
+
 dist-product
+
 npm-debug.log
 
-#custom
-.DS_Store
-gulpfile.js
+/vendor/
+
