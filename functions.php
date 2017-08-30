@@ -21,3 +21,41 @@ function theme_enqueue_styles() {
 	wp_enqueue_script( 'popper-scripts', get_template_directory_uri() . '/js/popper.min.js', array(), false);
     wp_enqueue_script( 'child-understrap-scripts', get_stylesheet_directory_uri() . '/js/app.min.js', array(), $the_theme->get( 'Version' ), true );
 }
+
+/* ADD FAVICON CONTENT
+================================================== */
+
+// add_action( 'wp_head', 'add_favicons');
+// function add_favicons() { 
+//     include_once('loop-templates/favicon.php');
+// }
+
+/* ADD GOOGLE ANALYTICS TRACKER CODE
+================================================== */
+
+// add_action( 'wp_head', 'add_googleanalytics');
+// function add_googleanalytics() { 
+//     include_once('loop-templates/analyticstracking.php');
+// }
+
+/* ADD CUSTOM STYLES TO LOGIN PAGE
+================================================== */
+
+// function aw_custom_login() {
+//     echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/login-styles.css" />';
+// }
+// add_action('login_head', 'aw_custom_login');
+
+
+/* CHANGE LOGO LINK DESTINATION ON LOGIN PAGE
+================================================== */
+
+// function aw_login_logo_url() {
+// return get_bloginfo( 'url' );
+// }
+// add_filter( 'login_headerurl', 'aw_login_logo_url' );
+
+// function aw_login_logo_url_title() {
+// return get_bloginfo( 'title' );
+// }
+// add_filter( 'login_headertitle', 'aw_login_logo_url_title' );
