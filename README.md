@@ -22,4 +22,6 @@
 
 7) $ gulp copy-assets
 
-8) Customize away!
+8) $ gulp watch-bs
+
+9) Customize away!
