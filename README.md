@@ -18,6 +18,8 @@
 
 5) $ cd into custom named instance of understrap-child
 
-6) $ gulp watch-bs
+6) $ npm install
 
-7) Customize away!
+7) $ gulp copy-assets
+
+8) Customize away!
