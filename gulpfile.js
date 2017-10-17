@@ -180,7 +180,7 @@ gulp.task('scripts', function() {
         // End - All BS4 stuff
 
         // Start - All Custom stuff
-        basePaths.dev + 'js/custom/*.js',
+        basePaths.dev + '../custom-scripts/*.js',
         // End - All Custom stuff
 
         basePaths.dev + 'js/skip-link-focus-fix.js'
