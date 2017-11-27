@@ -10,5 +10,5 @@ npm-debug.log
 
 #custom
 .DS_Store
-#src
+src
 #gulpfile.js
