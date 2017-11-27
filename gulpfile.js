@@ -110,6 +110,9 @@ gulp.task('sass', function () {
 gulp.task('watch', function () {
     gulp.watch('./sass/**/*.scss', ['styles']);
     gulp.watch([basePaths.dev + 'js/**/*.js','js/**/*.js','!js/child-theme.js','!js/child-theme.min.js'], ['scripts']);
+
+    //Inside the watch task.
+    gulp.watch('./img/**', ['imagemin'])
 });
 
 // Run:
@@ -231,16 +234,19 @@ gulp.task('copy-assets', function() {
 
 // Copy jQuery
     gulp.src(basePaths.node + 'jquery/dist/*.js')
-        .pipe(gulp.dest(basePaths.dev + '/js'));
+        .pipe(gulp.dest(basePaths.js));
 
 // _s SCSS files
     gulp.src(basePaths.node + 'undescores-for-npm/sass/**/*.scss')
         .pipe(gulp.dest(basePaths.dev + '/sass/underscores'));
 
-// _s JS files
+// _s JS files into /src/js
     gulp.src(basePaths.node + 'undescores-for-npm/js/*.js')
         .pipe(gulp.dest(basePaths.dev + '/js'));
 
+// _s JS files into /js
+    gulp.src(basePaths.node + 'undescores-for-npm/js/*.js')
+        .pipe(gulp.dest(basePaths.js));
 
 // Copy Popper JS files
     gulp.src(basePaths.node + 'popper.js/dist/umd/popper.min.js')
@@ -258,7 +264,7 @@ gulp.task('dist', ['clean-dist'], function() {
     .pipe(gulp.dest('dist/'))
 });
 
-// Deleting any file inside the /src folder
+// Deleting any file inside the /dist folder
 gulp.task('clean-dist', function () {
   return del(['dist/**/*',]);
 });
@@ -271,7 +277,7 @@ gulp.task('dist-product', ['clean-dist-product'], function() {
     .pipe(gulp.dest('dist-product/'))
 });
 
-// Deleting any file inside the /src folder
+// Deleting any file inside the /dist-product folder
 gulp.task('clean-dist-product', function () {
   return del(['dist-product/**/*',]);
 });
