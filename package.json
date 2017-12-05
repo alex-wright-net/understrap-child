@@ -46,9 +46,9 @@
     "gulp-watch": "^4.3.11",
     "jquery": "3.2.1",
     "merge2": "^1.2.0",
-    "popper.js": "^1.12.6",
+    "popper.js": "^1.13.0",
     "run-sequence": "^2.2.0",
-    "undescores-for-npm": "^1.0.0",
-    "understrap": "^0.6.9"
+    "understrap": "^0.6.9",
+    "undescores-for-npm": "^1.0.0"
   }
 }
