@@ -98,7 +98,9 @@ gulp.task('sass', function () {
                 this.emit('end');
             }
         }))
+        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(sass())
+        .pipe(sourcemaps.write(undefined, { sourceRoot: null }))
         .pipe(gulp.dest('./css'))
         .pipe(rename('custom-editor-style.css'))
     return stream;
@@ -183,7 +185,7 @@ gulp.task('scripts', function() {
         // End - All BS4 stuff
 
         // Start - All Custom stuff
-        basePaths.dev + '../custom-scripts/*.js',
+        basePaths.dev + '../custom-scripts/include/*.js',
         // End - All Custom stuff
 
         basePaths.dev + 'js/skip-link-focus-fix.js'
