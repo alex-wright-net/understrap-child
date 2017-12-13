@@ -1,8 +1,11 @@
 @import "theme/custom_variables";
 @import "assets/bootstrap4";
 @import "../src/sass/understrap/understrap/understrap";
-//@import "../src/sass/understrap/theme/contact-form7";
-@import "assets/font-awesome";
+@import "fontawesome5/fontawesome";
+@import "fontawesome5/fa-brands";
+@import "fontawesome5/fa-light";
+// @import "fontawesome5/fa-regular";
+// @import "fontawesome5/fa-solid";
 @import "assets/underscores";
 @import "theme/home";
 @import "theme/navigation";
