@@ -1,6 +1,6 @@
 {
   "name": "understrap-child",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "Basic Child Theme for UnderStrap Theme Framework: https://github.com/holger1411/understrap",
   "main": "index.js",
   "scripts": {
@@ -10,13 +10,14 @@
     "type": "git",
     "url": "https://github.com/holger1411/understrap-child.git"
   },
-  "keywords": [
+    "keywords": [
     "wordpress",
     "theme",
     "framework",
     "bootstrap",
     "underscores"
   ],
+
   "author": "Holger Koenemann",
   "license": "GPL-2.0",
   "bugs": {
@@ -27,7 +28,7 @@
     "bootstrap": "4.0.0-beta.2",
     "browser-sync": "^2.18.13",
     "del": "^3.0.0",
-    "font-awesome": "^4.7.0",
+    // "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.0",
     "gulp-clone": "^1.0.0",
@@ -46,9 +47,10 @@
     "gulp-watch": "^4.3.11",
     "jquery": "3.2.1",
     "merge2": "^1.2.0",
-    "popper.js": "^1.13.0",
+    "popper.js": "^1.12.6",
     "run-sequence": "^2.2.0",
-    "understrap": "^0.6.9",
-    "undescores-for-npm": "^1.0.0"
+    "undescores-for-npm": "^1.0.0",
+    "understrap": "^0.6.12"
   }
+    
 }
