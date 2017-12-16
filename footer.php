@@ -19,39 +19,37 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 	<div class="<?php echo esc_attr( $container ); ?>">
 
-		<div class="row footer-widgets">
+		<div class="row footer-widgets justify-contents-center">
 
-			<div class="row footer-widgets">
+			<div class="col footer-widget social">
 
-				<div class="col footer-widget social">
+				<ul class="list-inline">
+				<?php if( get_field('facebook_url', 'option') ): ?>
+					<li class="list-inline-item"><a href="<?php the_field('facebook_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-facebook-square" aria-hidden="true"></i></a></li>
+				<?php endif ?>
+				<?php if( get_field('twitter_url', 'option') ): ?>
+					<li class="list-inline-item"><a href="<?php the_field('twitter_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-twitter-square" aria-hidden="true"></i></a></li>
+				<?php endif ?>
+				<?php if( get_field('youtube_url', 'option') ): ?>
+					<li class="list-inline-item"><a href="<?php the_field('youtube_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+				<?php endif ?>
+				<?php if( get_field('instagram_url', 'option') ): ?>
+					<li class="list-inline-item"><a href="<?php the_field('instagram_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+				<?php endif ?>
+				<?php if( get_field('linkedin_url', 'option') ): ?>
+					<li class="list-inline-item"><a href="<?php the_field('linkedin_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+				<?php endif ?>
+				<?php if( get_field('yelp_url', 'option') ): ?>
+					<li class="list-inline-item"><a href="<?php the_field('yelp_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-yelp" aria-hidden="true"></i></a></li>
+				<?php endif ?>
+				<?php if( get_field('google_plus_url', 'option') ): ?>
+					<li class="list-inline-item"><a href="<?php the_field('google_plus_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-google-plus-square" aria-hidden="true"></i></a></li>
+				<?php endif ?>
+				</ul>
 
-					<ul class="list-inline">
-					<?php if( get_field('facebook_url', 'option') ): ?>
-						<li class="list-inline-item"><a href="<?php the_field('facebook_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-facebook-square" aria-hidden="true"></i></a></li>
-					<?php endif ?>
-					<?php if( get_field('twitter_url', 'option') ): ?>
-						<li class="list-inline-item"><a href="<?php the_field('twitter_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-twitter-square" aria-hidden="true"></i></a></li>
-					<?php endif ?>
-					<?php if( get_field('youtube_url', 'option') ): ?>
-						<li class="list-inline-item"><a href="<?php the_field('youtube_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
-					<?php endif ?>
-					<?php if( get_field('instagram_url', 'option') ): ?>
-						<li class="list-inline-item"><a href="<?php the_field('instagram_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-					<?php endif ?>
-					<?php if( get_field('linkedin_url', 'option') ): ?>
-						<li class="list-inline-item"><a href="<?php the_field('linkedin_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-					<?php endif ?>
-					<?php if( get_field('yelp_url', 'option') ): ?>
-						<li class="list-inline-item"><a href="<?php the_field('yelp_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-yelp" aria-hidden="true"></i></a></li>
-					<?php endif ?>
-					<?php if( get_field('google_plus_url', 'option') ): ?>
-						<li class="list-inline-item"><a href="<?php the_field('google_plus_url', 'option'); ?>" target="_blank" rel="noopener nofollow"><i class="fab fa-google-plus-square" aria-hidden="true"></i></a></li>
-					<?php endif ?>
-					</ul>
+			</div><!-- .footer-widget social -->
 
-				</div><!-- .footer-widget -->
-
-			</div><!-- .col .footer-widget -->
+		</div><!-- .footer-widgets -->
 
 	</div><!-- container end -->
 
@@ -64,7 +62,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 			<div class="col-sm-12">
 
-				<p><small>&copy;<?php echo date( "Y" ); ?> <?php if( get_field('business_name', 'option') ): ?><?php the_field('business_name', 'option'); endif ?> All Rights Reserved. </small></p>
+				<p><small>&copy;<?php echo date( "Y" ); ?> <?php if( get_field('business_name', 'option') ): ?><?php the_field('business_name', 'option'); endif ?> <span class="ml-3">All Rights Reserved.</span></small></p>
 
 			</div>
 
@@ -83,4 +81,3 @@ $container = get_theme_mod( 'understrap_container_type' );
 </body>
 
 </html>
-

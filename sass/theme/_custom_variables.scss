@@ -1,11 +1,13 @@
-$brand-primary:										#fece01; //#ff6d5a
-
-$border-radius:										2px;
-
-$navbar-dark-color:								$brand-primary; // changes the mobile menu hamburger color
+$brand-primary:										#ff0000;
 
 $font-weight-light:								300;
 $font-weight-medium:							400;
 $font-weight-heavy:								600;
+
+$navbar-height:										80px; // make sure this is the same as the scrollspy offset and the smooth scroll offset
+
+$border-radius:										2px;
+
+$navbar-dark-color:								$brand-primary; // changes the mobile menu hamburger color
 
 $fa-font-path:										"../fonts";
