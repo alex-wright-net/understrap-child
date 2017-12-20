@@ -36,6 +36,12 @@ if( function_exists('acf_add_options_page') ) {
         
 }
 
+/* REDUCE PRIORITY OF YOAST METABOXES
+================================================== */
+
+add_filter( 'wpseo_metabox_prio', function() { return 'low';});
+
+
 /* ADD FAVICON CONTENT
 ================================================== */
 // add_action( 'wp_head', 'add_favicons');
