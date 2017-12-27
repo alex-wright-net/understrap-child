@@ -1,0 +1,77 @@
+#login {
+	padding: 40px 0 0;   /* adjust per client image  */
+/*  @media screen and (min-width 768px) {
+		padding: 2% 0 0;
+	}*/
+}
+
+.login form {
+	margin-top: 40px;   /* adjust per client image  */
+}
+
+.login h1 a {
+	background-image: url(login-logo.png);
+	height: 230px!important;   /* adjust per client image  */
+	width: 310px!important;   /* adjust per client image  */
+	margin: 0 auto 10px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.login label {    /* text inside login box */
+	font-size: 12px;
+	color: #de0000;    /* brand primary */
+}
+
+.login input[type="text"],
+.login input[type="password"]{   /* username and password input */
+	background-color: #ffffff;
+	border-color:#de0000;    /* brand primary */
+	-webkit-border-radius: 0;    /* border radius */
+}
+
+.login input[type=text]:focus,
+.login input[type=password]:focus {   /* username and password input focus */
+	border-color: #b10000 !important;   /* brand primary darkened 20% */
+	box-shadow: 1px 1px 5px 1px rgba( 30, 30, 30, 0.15 ) !important;    /* gray drop shadow */
+}
+
+.login .button-primary,
+.login .button-primary:hover,
+.login .button-primary:active {   /* login button */
+	width: 120px;
+	float:right;
+	background-color:#de0000 !important;    /* brand primary */
+	color: #ffffff;
+	-webkit-border-radius: 0;    /* border radius */
+	border: 1px solid #de0000;    /* brand primary */
+}
+
+.login .button-primary:hover,
+.login .button-primary:active {   /* login button hover + active */
+	background-color:#b10000 !important;    /* brand primary darkened 20% */
+	border: 1px solid #b10000;    /* brand primary darkened 20% */
+}
+
+.wp-core-ui .button-primary {
+		 background: none; 
+		 border-color: none; 
+		 -webkit-box-shadow: none; 
+		 box-shadow: none; 
+		 color: #fff; 
+		 text-decoration: none; 
+		 text-shadow: none; 
+}
+
+
+.login #login_error, .login .message {
+		border-left: 4px solid #de0000;    /* brand primary */
+}
+
+.login #backtoblog a, .login #nav a, .login h1 a {    /* lost password and back to website text */
+		color: #de0000;    /* brand primary */
+}
+
+.login #backtoblog a:hover, .login #nav a:hover, .login h1 a:hover {    /* lost password and back to website text hover */
+		color: #b10000;    /* brand primary darkened 20% */
+}
