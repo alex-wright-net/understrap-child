@@ -48,7 +48,7 @@ function swallowError(self, error) {
 
 // Run:
 // gulp sass + cssnano + rename
-// Prepare the min.css for production (with 2 pipes to be sure that "child-theme.css" == "child-theme.min.css")
+// Prepare the min.css for production (with 2 pipes to be sure that "style.css" == "style.min.css")
 gulp.task('scss-for-prod', function() {
     var source =  gulp.src('./sass/*.scss')
         .pipe(plumber({ errorHandler: function (error) { swallowError(this, error); } }))
@@ -73,7 +73,7 @@ gulp.task('scss-for-prod', function() {
 
 // Run:
 // gulp sourcemaps + sass + reload(browserSync)
-// Prepare the child-theme.css for the development environment
+// Prepare the style.css for the development environment
 gulp.task('scss-for-dev', function() {
     gulp.src('./sass/*.scss')
         .pipe(plumber({ errorHandler: function (error) { swallowError(this, error); } }))
@@ -111,7 +111,7 @@ gulp.task('sass', function () {
 // Starts watcher. Watcher runs gulp sass task on changes
 gulp.task('watch', function () {
     gulp.watch('./sass/**/*.scss', ['styles']);
-    gulp.watch([basePaths.dev + 'js/**/*.js','js/**/*.js','!js/child-theme.js','!js/child-theme.min.js'], ['scripts']);
+    gulp.watch([basePaths.dev + 'js/**/*.js','js/**/*.js','!js/app.js','!js/app.min.js'], ['scripts']);
 
     //Inside the watch task.
     gulp.watch('./img/**', ['imagemin'])
@@ -140,7 +140,7 @@ gulp.task('cssnano', ['cleancss'], function(){
 });
 
 gulp.task('minify-css', function() {
-  return gulp.src('./css/child-theme.css')
+  return gulp.src('./css/style.css')
   .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(cleanCSS({compatibility: '*'}))
     .pipe(plumber({
@@ -156,7 +156,7 @@ gulp.task('minify-css', function() {
 
 gulp.task('cleancss', function() {
   return gulp.src('./css/*.min.css', { read: false }) // much faster
-    .pipe(ignore('child-theme.css'))
+    .pipe(ignore('style.css'))
     .pipe(rimraf());
 });
 
@@ -188,14 +188,14 @@ gulp.task('scripts', function() {
         basePaths.dev + 'js/skip-link-focus-fix.js'
     ];
   gulp.src(scripts)
-    .pipe(concat('child-theme.min.js'))
+    .pipe(concat('app.min.js'))
     .pipe(uglify().on('error', function(e){
             console.log(e);
          }))
     .pipe(gulp.dest('./js/'));
 
   gulp.src(scripts)
-    .pipe(concat('child-theme.js'))
+    .pipe(concat('app.js'))
     .pipe(gulp.dest('./js/'));
 });
 
