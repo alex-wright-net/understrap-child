@@ -15,7 +15,7 @@ var browserSyncWatchFiles = [
 // browser-sync options
 // see: https://www.browsersync.io/docs/options/
 var browserSyncOptions = {
-    proxy: "localhost/understrap/",
+    proxy: "https://local-project.com", // change to your local development url
     notify: false
 };
 
