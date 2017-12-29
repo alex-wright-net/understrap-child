@@ -9,8 +9,11 @@
 	.navbar-toggler {
 		border: none;
 	}
-	&.bg-dark {
-		background-color: $gray-600;
+	.bg-dark {
+		background-color: $gray-600 !important;
+	}
+	.bg-light {
+		background-color: $gray-200 !important;
 	}
 	.navbar-dark {
 		.navbar-brand {
