@@ -25,11 +25,11 @@
   "homepage": "https://understrap.com",
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.23.1",
     "del": "^3.0.0",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.9.0",
+    "gulp-clean-css": "^3.9.2",
     "gulp-clone": "^1.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",
@@ -48,7 +48,7 @@
     "merge2": "^1.2.0",
     "popper.js": "^1.12.6",
     "run-sequence": "^2.2.0",
-    "undescores-for-npm": "^1.0.0",
-    "understrap": "^0.6.12"
+    "understrap": "^0.6.12",
+    "undescores-for-npm": "^1.0.0"
   }
 }
