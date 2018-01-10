@@ -3,18 +3,6 @@
 	.navbar-brand {
 		img {
 			max-width: 200px;
-			//margin-left: calc(((100vw - 2rem - 42px) - 200px) / 2);
-			@include media-breakpoint-up(md) {
-			  max-width: 260px;
-			  //margin-left: calc(((100vw - 2rem - 42px) - 260px) / 2);
-			}
-			@include media-breakpoint-up(lg) {
-				max-width: 200px;
-			  margin-left: 0;
-			}
-			@include media-breakpoint-up(xl) {
-			  max-width: 260px;
-			}
 		}
 	}
 	button:focus {

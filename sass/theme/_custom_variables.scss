@@ -1,16 +1,17 @@
-//$font-family:												"proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$body-font:														"Helvetica Neue", Helvetica, Arial, sans-serif;
+$headline-font;												$body-font;
 
-$brand-primary:											#de0000;
+$brand-primary:												#de0000;
 //$light-gray:												#f3f3f3;
 //$lighter-gray:											#f9f9f9;
 //$black:															#222222;
 //$white:															#ffffff;
 
 //$font-weight-light:									300;
-//$font-weight-medium:								400;
+$font-weight-medium:								400;
 //$font-weight-heavy:									$font-weight-medium;
 
-//$navbar-height:											64px; // make sure this is the same as the scrollspy offset and the smooth scroll offset
+$navbar-height:												64px; // make sure this is the same as the scrollspy offset and the smooth scroll offset
 
 //$border-radius:											0;
 
