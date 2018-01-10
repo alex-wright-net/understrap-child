@@ -1,0 +1,50 @@
+jQuery(document).ready(function(){
+        console.log("This is loading");
+        jQuery('.owl-carousel').not('.owl-speaking').owlCarousel({
+            loop:true,
+            autoplay:true,
+            margin:10,
+            nav:false,
+            responsive:{
+                0:{
+                    items:2
+                },
+                576:{
+                    items:3
+                },
+                768:{
+                    items:4
+                },
+                992:{
+                    items:5
+                },
+                1200:{
+                    items:6
+                }
+            }
+        });
+    });
+    $(document).ready(function(){
+      var owl = jQuery('.owl-speaking');
+      console.log(owl)
+      owl.owlCarousel({
+        loop:true,
+        autoplay:true,
+        margin:10,
+        nav:false,
+        smartSpeed:1000,
+        autoplaySpeed:1000,
+          responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:2
+            },
+            1000:{
+                items:3
+            }
+        }
+      });
+
+    });
