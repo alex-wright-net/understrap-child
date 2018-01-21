@@ -25,6 +25,8 @@ var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var cssnano = require('gulp-cssnano');
+var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -34,7 +36,6 @@ var ignore = require('gulp-ignore');
 var rimraf = require('gulp-rimraf');
 var clone = require('gulp-clone');
 var merge = require('gulp-merge');
-var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var del = require('del');
 var cleanCSS = require('gulp-clean-css');
@@ -100,6 +101,7 @@ gulp.task('sass', function () {
         }))
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(sass())
+        .pipe(autoprefixer('last 2 versions'))
         .pipe(sourcemaps.write(undefined, { sourceRoot: null }))
         .pipe(gulp.dest('./css'))
         .pipe(rename('custom-editor-style.css'))

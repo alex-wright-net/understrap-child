@@ -3891,22 +3891,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 //# sourceMappingURL=bootstrap.js.map
 
-// Useful for single page scrolling websites to close menu on click to anchor link on same page,
-// which otherwise wouldn't close
-
-jQuery('.navbar-nav>li>a').on('click', function(){
-    jQuery('.navbar-collapse').collapse('hide');
-});
-// Useful on any website to close menu on scroll when past a certain offset point
-
-jQuery(window).on('scroll', function() {
-
-    if (jQuery(".navbar").offset().top > 50) {
-        jQuery('.navbar-collapse').collapse('hide');
-        jQuery('#wrapper-navbar .navbar .navbar-toggler').removeClass('expanded');
-    }     
-
-});
 /**
  * File skip-link-focus-fix.js.
  *
