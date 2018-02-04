@@ -25,8 +25,6 @@ var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var cssnano = require('gulp-cssnano');
-var sourcemaps = require('gulp-sourcemaps');
-var autoprefixer = require('gulp-autoprefixer');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -39,7 +37,12 @@ var merge = require('gulp-merge');
 var browserSync = require('browser-sync').create();
 var del = require('del');
 var cleanCSS = require('gulp-clean-css');
-var gulpSequence = require('gulp-sequence')
+var gulpSequence = require('gulp-sequence');
+var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
+var penthouse = require("penthouse");
+var fs = require('fs');
+var urlList = require('./criticalcss-pagelist.json')
 
 function swallowError(self, error) {
     console.log(error.toString())
@@ -208,6 +211,64 @@ gulp.task('scripts', function() {
 gulp.task('clean-source', function () {
   return del(['src/**/*',]);
 });
+
+
+
+// Run:
+// gulp criticalcss
+// Generates CriticalCSS for above-the-fold content - look to criticalcss-pagelist.json for list of input pages and output files
+gulp.task('criticalcss',function(){
+  urlList.urls.forEach(function(item,i){
+    penthouse({
+        url: item.link,       // can also use file:/// protocol for local files
+        //cssString: 'body { color; red }', // the original css to extract critcial css from
+        css: './css/style.min.css',      // path to original css file on disk
+        // OPTIONAL params
+        width: 1300,                    // viewport width
+        height: 900,                    // viewport height
+        keepLargerMediaQueries: false,  // when true, will not filter out larger media queries
+        forceInclude: [ // selectors to keep
+          '.keepMeEvenIfNotSeenInDom',
+          /^\.regexWorksToo/
+        ],
+        propertiesToRemove: [
+          '(.*)transition(.*)',
+          'cursor',
+          'pointer-events',
+          '(-webkit-)?tap-highlight-color',
+          '(.*)user-select'
+        ],
+        timeout: 30000,                 // ms; abort critical CSS generation after this timeout
+        pageLoadSkipTimeout: 0,         // ms; stop waiting for page load after this timeout (for sites with broken page load event timings)
+        maxEmbeddedBase64Length: 1000,  // characters; strip out inline base64 encoded resources larger than this
+        userAgent: 'Penthouse Critical Path CSS Generator', // specify which user agent string when loading the page
+        renderWaitTime: 100,            // ms; render wait timeout before CSS processing starts (default: 100)
+        blockJSRequests: true,          // set to false to load (external) JS (default: true)
+        customPageHeaders: {
+          'Accept-Encoding': 'identity' // add if getting compression errors like 'Data corrupted'
+        },
+        strict: false,                  // set to true to throw on CSS errors
+        screenshots: {
+          // turned off by default
+          // basePath: 'homepage', // absolute or relative; excluding file extension
+          // type: 'jpeg', // jpeg or png, png default
+          // quality: 20 // only applies for jpeg type
+          // -> these settings will produce homepage-before.jpg and homepage-after.jpg
+        },
+        puppeteer: {
+          getBrowser: undefined,        // A function that resolves with a puppeteer browser to use instead of launching a new browser session
+        }
+    })
+    .then(criticalCss => {
+        // use the critical css
+        fs.writeFileSync('./'+item.name+'.php',"<?php ?><style>"+ criticalCss + "</style><?php ?> ");
+    })
+    .catch(err => {
+        // handle the error
+    })
+  })
+})
+
 
 // Run:
 // gulp copy-assets.
