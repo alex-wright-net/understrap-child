@@ -101,7 +101,8 @@ gulp.task( 'sass', function() {
 gulp.task( 'watch', function() {
 	gulp.watch( paths.sass + '/**/*.scss', ['styles'] );
 	gulp.watch( [paths.dev + '/js/**/*.js', 'js/**/*.js', '!js/app.js', '!js/app.min.js'], ['scripts'] );
-	gulp.watch('./custom-scripts/include/*.js', ['scripts'] );
+	gulp.watch( paths.custom_js + '/include/*.js', ['scripts'] );
+
 
 	//Inside the watch task.
 	gulp.watch( paths.imgsrc + '/**', ['imagemin-watch'] );
@@ -183,7 +184,7 @@ gulp.task( 'scripts', function() {
 		// End - All BS4 stuff
 
 		// Start - Custom scripts
-		paths.dev + '../custom-scripts/include/*.js',
+		paths.custom_js + '/include/*.js',
 		// End - Custom scripts
 
 		// Start - Owl Carousel script, comment out if not using

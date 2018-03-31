@@ -1,7 +1,11 @@
 {
   "browserSyncOptions" : {
-    "proxy": "localhost/wordpress/",
-    "notify": false
+    "proxy": "https://local-project.com",
+    "notify": true,
+    "https": {
+      "key": "/usr/local/etc/apache2/2.4/localhost.key.pem",
+      "cert": "/usr/local/etc/apache2/2.4/localhost.crt.pem"
+    } 
   },
   "browserSyncWatchFiles" : [
     "./css/*.min.css",
@@ -10,6 +14,7 @@
   ],
   "paths" : {
     "js": "./js",
+    "custom_js":"./custom-scripts",
     "css": "./css",
     "img": "./img",
 		"imgsrc": "./src/img",
