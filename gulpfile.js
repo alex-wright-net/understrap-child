@@ -229,6 +229,7 @@ gulp.task('criticalcss',function(){
 
 // Run:
 // gulp copy-assets.
+gulp.task( 'copy-assets', function() {
 
 // START CUSTOMIZED ADDITIONS TO gulp copy-assets - PRESERVE THROUGH UPDATES
 
@@ -240,21 +241,18 @@ gulp.task('criticalcss',function(){
 	gulp.src( paths.node + '@fortawesome/fontawesome-pro-webfonts/scss/*.scss' )
 		.pipe( gulp.dest( paths.dev + '/sass/fontawesome' ) );
 
-// Copy all Owl Carousel SCSS files
-	gulp.src( paths.node + 'owl.carousel/src/scss/*.scss')
-		.pipe( gulp.dest( paths.dev + '/sass/owl-carousel' ) );
+// Copy all Owl Carousel 2 SCSS files
+	gulp.src( paths.node + 'owl.carousel2/src/scss/*.scss')
+		.pipe( gulp.dest( paths.dev + '/sass/owl.carousel2' ) );
 
-// Copy all Owl Carousel JS
-	gulp.src( paths.node + 'owl.carousel/dist/owl.carousel.js' )
+// Copy all Owl Carousel 2 JS
+	gulp.src( paths.node + 'owl.carousel2/dist/owl.carousel.js' )
 		.pipe(gulp.dest( paths.dev + '/js' ) );
-
 
 // END CUSTOMIZED ADDITIONS TO gulp copy-assets - PRESERVE THROUGH UPDATES
 
-////////////////// All Bootstrap SASS  Assets /////////////////////////
-gulp.task( 'copy-assets', function() {
-
 ////////////////// All Bootstrap 4 Assets /////////////////////////
+
 // Copy all JS files
 	var stream = gulp.src( paths.node + 'bootstrap/dist/js/**/*.js' )
 		.pipe( gulp.dest( paths.dev + '/js/bootstrap4' ) );
