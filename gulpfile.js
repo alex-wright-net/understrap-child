@@ -229,21 +229,8 @@ gulp.task('criticalcss',function(){
 
 // Run:
 // gulp copy-assets.
-// Copy all needed dependency assets files from bower_component assets to themes /js, /scss and /fonts folder. Run this task after bower install or bower update
 
-////////////////// All Bootstrap SASS  Assets /////////////////////////
-gulp.task( 'copy-assets', function() {
-
-////////////////// All Bootstrap 4 Assets /////////////////////////
-// Copy all JS files
-	var stream = gulp.src( paths.node + 'bootstrap/dist/js/**/*.js' )
-		.pipe( gulp.dest( paths.dev + '/js/bootstrap4' ) );
-
-// Copy all Bootstrap SCSS files
-	gulp.src( paths.node + 'bootstrap/scss/**/*.scss' )
-		.pipe( gulp.dest( paths.dev + '/sass/bootstrap4' ) );
-
-////////////////// End Bootstrap 4 Assets /////////////////////////
+// START CUSTOMIZED ADDITIONS TO gulp copy-assets - PRESERVE THROUGH UPDATES
 
 // Copy all Font Awesome 5 Pro Fonts
 	gulp.src( paths.node + '@fortawesome/fontawesome-pro-webfonts/webfonts/*.{ttf,woff,woff2,eof,svg}' )
@@ -260,6 +247,23 @@ gulp.task( 'copy-assets', function() {
 // Copy all Owl Carousel JS
 	gulp.src( paths.node + 'owl.carousel/dist/owl.carousel.js' )
 		.pipe(gulp.dest( paths.dev + '/js' ) );
+
+
+// END CUSTOMIZED ADDITIONS TO gulp copy-assets - PRESERVE THROUGH UPDATES
+
+////////////////// All Bootstrap SASS  Assets /////////////////////////
+gulp.task( 'copy-assets', function() {
+
+////////////////// All Bootstrap 4 Assets /////////////////////////
+// Copy all JS files
+	var stream = gulp.src( paths.node + 'bootstrap/dist/js/**/*.js' )
+		.pipe( gulp.dest( paths.dev + '/js/bootstrap4' ) );
+
+// Copy all Bootstrap SCSS files
+	gulp.src( paths.node + 'bootstrap/scss/**/*.scss' )
+		.pipe( gulp.dest( paths.dev + '/sass/bootstrap4' ) );
+
+////////////////// End Bootstrap 4 Assets /////////////////////////
 
 // _s SCSS files
     gulp.src( paths.node + 'undescores-for-npm/sass/media/*.scss' )
