@@ -29,53 +29,6 @@ var cfg = require( './gulpconfig.json' );
 var paths = cfg.paths;
 
 // Run:
-// gulp sass + cssnano + rename
-// Prepare the min.css for production (with 2 pipes to be sure that "theme.css" == "theme.min.css")
-gulp.task( 'scss-for-prod', function() {
-	var source =  gulp.src( paths.sass + '/*.scss' )
-		.pipe( plumber({
-			errorHandler: function( err ) {
-				console.log( err );
-				this.emit( 'end' );
-			}
-		}) )
-		.pipe( sourcemaps.init({ loadMaps: true }) )
-		.pipe( sass() );
-
-	var pipe1 = source.pipe( clone() )
-		.pipe( sourcemaps.write( undefined, { sourceRoot: null } ) )
-		.pipe( gulp.dest( paths.css ) )
-		.pipe( rename( 'custom-editor-style.css' ) );
-
-	var pipe2 = source.pipe( clone() )
-		.pipe( minifycss() )
-		.pipe( rename( { suffix: '.min' } ) )
-		.pipe( gulp.dest( paths.css ) );
-	return merge( pipe1, pipe2 );
-});
-
-// Run:
-// gulp sourcemaps + sass + reload(browserSync)
-// Prepare the style.css for the development environment
-gulp.task( 'scss-for-dev', function() {
-	gulp.src( paths.sass + '/*.scss' )
-		.pipe( plumber( {
-			errorHandler: function( err ) {
-				console.log( err );
-				this.emit( 'end' );
-			}
-		} ) )
-		.pipe( sourcemaps.init({ loadMaps: true }) )
-		.pipe( sass() )
-		.pipe( sourcemaps.write( undefined, { sourceRoot: null } ) )
-		.pipe( gulp.dest( paths.css ) );
-});
-
-gulp.task( 'watch-scss', ['browser-sync'], function() {
-	gulp.watch( paths.sass + '/**/*.scss', ['scss-for-dev'] );
-});
-
-// Run:
 // gulp sass
 // Compiles SCSS files in CSS
 gulp.task( 'sass', function() {
@@ -115,6 +68,15 @@ gulp.task( 'imagemin', function() {
 	gulp.src( paths.imgsrc + '/**' )
 	.pipe( imagemin() )
 	.pipe( gulp.dest( paths.img ) );
+});
+
+/**
+ * Ensures the 'imagemin' task is complete before reloading browsers
+ * @verbose
+ */
+gulp.task( 'imagemin-watch', ['imagemin'], function( ) {
+  browserSync.reload();
+
 });
 
 // Run:
@@ -299,30 +261,25 @@ gulp.task( 'copy-assets', function() {
 	gulp.src( paths.node + 'owl.carousel/dist/owl.carousel.js' )
 		.pipe(gulp.dest( paths.dev + '/js' ) );
 
-
 // _s SCSS files
-	gulp.src( paths.node + 'undescores-for-npm/sass/media/*.scss' )
-		.pipe( gulp.dest( paths.dev + '/sass/underscores' ) );
+    gulp.src( paths.node + 'undescores-for-npm/sass/media/*.scss' )
+        .pipe( gulp.dest( paths.dev + '/sass/underscores' ) );
 
 // _s JS files into /src/js
-	gulp.src( paths.node + 'undescores-for-npm/js/skip-link-focus-fix.js' )
-		.pipe( gulp.dest( paths.dev + '/js' ) );
-
-// _s JS files into /js
-	gulp.src( paths.node + 'undescores-for-npm/js/skip-link-focus-fix.js' )
-		.pipe( gulp.dest( paths.js + paths.vendor ) );
+    gulp.src( paths.node + 'undescores-for-npm/js/skip-link-focus-fix.js' )
+        .pipe( gulp.dest( paths.dev + '/js' ) );
 
 // Copy Popper JS files
-	gulp.src( paths.node + 'popper.js/dist/umd/popper.min.js' )
-		.pipe( gulp.dest( paths.js + paths.vendor ) );
-	gulp.src( paths.node + 'popper.js/dist/umd/popper.js' )
-		.pipe( gulp.dest( paths.js + paths.vendor ) );
+    gulp.src( paths.node + 'popper.js/dist/umd/popper.min.js' )
+        .pipe( gulp.dest( paths.js + paths.vendor ) );
+    gulp.src( paths.node + 'popper.js/dist/umd/popper.js' )
+        .pipe( gulp.dest( paths.js + paths.vendor ) );
 
 // UnderStrap SCSS files
-	gulp.src( paths.node + 'understrap/sass/**/*.scss' )
-		.pipe( gulp.dest( paths.dev + '/sass/understrap' ) );    
+    gulp.src( paths.node + 'understrap/sass/**/*.scss' )
+        .pipe( gulp.dest( paths.dev + '/sass/understrap' ) );    
 
-	return stream;
+    return stream;
 });
 
 // Deleting the files distributed by the copy-assets task
