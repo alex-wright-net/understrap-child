@@ -180,26 +180,26 @@ gulp.task( 'scripts', function() {
 	var scripts = [
 
 		// Start - All BS4 stuff
-		paths.dev + 'js/bootstrap4/bootstrap.js',
+		paths.dev + '/js/bootstrap4/bootstrap.js',
 		// End - All BS4 stuff
+
+		paths.dev + '/js/skip-link-focus-fix.js',
+
+		// Start - Owl Carousel script, comment out if not using
+		paths.dev + '/js/owl.carousel.js',
+		// Start - Owl Carousel scripts
 
 		// Start - Custom scripts
 		paths.custom_js + '/include/*.js',
 		// End - Custom scripts
-
-		// Start - Owl Carousel script, comment out if not using
-		paths.dev + 'js/owl.carousel.js',
-		// Start - Owl Carousel scripts
-
-		paths.dev + 'js/skip-link-focus-fix.js'
 	];
   gulp.src( scripts )
-	.pipe( concat( 'style.min.js' ) )
+	.pipe( concat( 'app.min.js' ) )
 	.pipe( uglify() )
 	.pipe( gulp.dest( paths.js ) );
 
   gulp.src( scripts )
-	.pipe( concat( 'style.js' ) )
+	.pipe( concat( 'app.js' ) )
 	.pipe( gulp.dest( paths.js ) );
 });
 
