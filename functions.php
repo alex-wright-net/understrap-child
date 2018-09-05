@@ -24,6 +24,7 @@ function theme_enqueue_styles() {
     }
 }
 
+
 /* ADD ADVANCED CUSTOM FIELDS OPTIONS PAGE
 ================================================== */
 if( function_exists('acf_add_options_page') ) {
@@ -71,3 +72,9 @@ function aw_login_logo_url_title() {
 return get_bloginfo( 'title' );
 }
 add_filter( 'login_headertitle', 'aw_login_logo_url_title' );
+=======
+function add_child_theme_textdomain() {
+    load_child_theme_textdomain( 'understrap-child', get_stylesheet_directory() . '/languages' );
+}
+add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
+
