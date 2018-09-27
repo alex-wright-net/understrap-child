@@ -32,42 +32,40 @@ var paths = cfg.paths;
 // gulp sass
 // Compiles SCSS files in CSS
 gulp.task( 'sass', function() {
-	var stream = gulp.src( paths.sass + '/*.scss' )
-		.pipe( plumber( {
-			errorHandler: function( err ) {
-				console.log( err );
-				this.emit( 'end' );
-			}
-		} ) )
-		.pipe( sourcemaps.init({loadMaps: true } ) )
-		.pipe( sass( { errLogToConsole: true } ) )
-		.pipe( autoprefixer( 'last 2 versions' ) )
-		.pipe( sourcemaps.write( undefined, { sourceRoot: null } ) )
-		.pipe( gulp.dest( paths.css ) )
-		.pipe( rename( 'custom-editor-style.css' ) );
-	return stream;
+    var stream = gulp.src( paths.sass + '/*.scss' )
+        .pipe( sourcemaps.init( { loadMaps: true } ) )
+        .pipe( plumber( {
+            errorHandler: function( err ) {
+                console.log( err );
+                this.emit( 'end' );
+            }
+        } ) )
+        .pipe( sass( { errLogToConsole: true } ) )
+        .pipe( autoprefixer( 'last 2 versions' ) )
+        .pipe( sourcemaps.write( './' ) )
+        .pipe( gulp.dest( paths.css ) )
+        .pipe( rename( 'custom-editor-style.css' ) );
+    return stream;
 });
 
 // Run:
 // gulp watch
 // Starts watcher. Watcher runs gulp sass task on changes
 gulp.task( 'watch', function() {
-	gulp.watch( paths.sass + '/**/*.scss', ['styles'] );
-	gulp.watch( [paths.dev + '/js/**/*.js', 'js/**/*.js', '!js/app.js', '!js/app.min.js'], ['scripts'] );
-	gulp.watch( paths.custom_js + '/include/*.js', ['scripts'] );
+    gulp.watch( paths.sass + '/**/*.scss', ['styles'] );
+    gulp.watch( [paths.dev + '/js/**/*.js', 'js/**/*.js', '!js/app.js', '!js/app.min.js'], ['scripts'] );
 
-
-	//Inside the watch task.
-	gulp.watch( paths.imgsrc + '/**', ['imagemin-watch'] );
+    //Inside the watch task.
+    gulp.watch( paths.imgsrc + '/**', ['imagemin-watch'] );
 });
 
 // Run:
 // gulp imagemin
 // Running image optimizing task
 gulp.task( 'imagemin', function() {
-	gulp.src( paths.imgsrc + '/**' )
-	.pipe( imagemin() )
-	.pipe( gulp.dest( paths.img ) );
+    gulp.src( paths.imgsrc + '/**' )
+    .pipe( imagemin() )
+    .pipe( gulp.dest( paths.img ) );
 });
 
 /**
@@ -84,49 +82,49 @@ gulp.task( 'imagemin-watch', ['imagemin'], function( ) {
 // Minifies CSS files
 gulp.task( 'cssnano', function() {
   return gulp.src( paths.css + '/style.css' )
-	.pipe( sourcemaps.init( { loadMaps: true } ) )
-	.pipe( plumber( {
-			errorHandler: function( err ) {
-				console.log( err );
-				this.emit( 'end' );
-			}
-		} ) )
-	.pipe( rename( { suffix: '.min' } ) )
-	.pipe( cssnano( { discardComments: { removeAll: true } } ) )
-	.pipe( sourcemaps.write( './' ) )
-	.pipe( gulp.dest( paths.css ) );
+    .pipe( sourcemaps.init( { loadMaps: true } ) )
+    .pipe( plumber( {
+            errorHandler: function( err ) {
+                console.log( err );
+                this.emit( 'end' );
+            }
+        } ) )
+    .pipe( rename( { suffix: '.min' } ) )
+    .pipe( cssnano( { discardComments: { removeAll: true } } ) )
+    .pipe( sourcemaps.write( './' ) )
+    .pipe( gulp.dest( paths.css ) );
 });
 
 gulp.task( 'minifycss', function() {
   return gulp.src( paths.css + '/style.css' )
   .pipe( sourcemaps.init( { loadMaps: true } ) )
-	.pipe( cleanCSS( { compatibility: '*' } ) )
-	.pipe( plumber( {
-			errorHandler: function( err ) {
-				console.log( err ) ;
-				this.emit( 'end' );
-			}
-		} ) )
-	.pipe( rename( { suffix: '.min' } ) )
-	 .pipe( sourcemaps.write( './' ) )
-	.pipe( gulp.dest( paths.css ) );
+    .pipe( cleanCSS( { compatibility: '*' } ) )
+    .pipe( plumber( {
+            errorHandler: function( err ) {
+                console.log( err ) ;
+                this.emit( 'end' );
+            }
+        } ) )
+    .pipe( rename( { suffix: '.min' } ) )
+     .pipe( sourcemaps.write( './' ) )
+    .pipe( gulp.dest( paths.css ) );
 });
 
 gulp.task( 'cleancss', function() {
   return gulp.src( paths.css + '/*.min.css', { read: false } ) // Much faster
-	.pipe( ignore( 'style.css' ) )
-	.pipe( rimraf() );
+    .pipe( ignore( 'style.css' ) )
+    .pipe( rimraf() );
 });
 
 gulp.task( 'styles', function( callback ) {
-	gulpSequence( 'sass', 'minifycss' )( callback );
+    gulpSequence( 'sass', 'minifycss' )( callback );
 } );
 
 // Run:
 // gulp browser-sync
 // Starts browser-sync task for starting the server.
 gulp.task( 'browser-sync', function() {
-	browserSync.init( cfg.browserSyncWatchFiles, cfg.browserSyncOptions );
+    browserSync.init( cfg.browserSyncWatchFiles, cfg.browserSyncOptions );
 } );
 
 // Run:
@@ -139,30 +137,28 @@ gulp.task( 'watch-bs', ['browser-sync', 'watch', 'scripts'], function() {
 // gulp scripts. 
 // Uglifies and concat all JS files into one
 gulp.task( 'scripts', function() {
-	var scripts = [
+    var scripts = [
 
-		// Start - All BS4 stuff
-		paths.dev + '/js/bootstrap4/bootstrap.js',
-		// End - All BS4 stuff
+        // Start - All BS4 stuff
+        paths.dev + '/js/bootstrap4/bootstrap.js',
+        // End - All BS4 stuff
 
-		paths.dev + '/js/skip-link-focus-fix.js',
+        paths.dev + '/js/skip-link-focus-fix.js',
 
-		// Start - Owl Carousel script, comment out if not using
-		paths.dev + '/js/owl.carousel.js',
-		// Start - Owl Carousel scripts
+        // Start - Custom added Owl Carousel script, comment out if not using
+        paths.dev + '/js/owl.carousel.js',
 
-		// Start - Custom scripts
-		paths.custom_js + '/include/*.js',
-		// End - Custom scripts
-	];
+    		// Start - Custom scripts
+    		paths.custom_js + '/include/*.js'
+    ];
   gulp.src( scripts )
-	.pipe( concat( 'app.min.js' ) )
-	.pipe( uglify() )
-	.pipe( gulp.dest( paths.js ) );
+    .pipe( concat( 'app.min.js' ) )
+    .pipe( uglify() )
+    .pipe( gulp.dest( paths.js ) );
 
   gulp.src( scripts )
-	.pipe( concat( 'app.js' ) )
-	.pipe( gulp.dest( paths.js ) );
+    .pipe( concat( 'app.js' ) )
+    .pipe( gulp.dest( paths.js ) );
 });
 
 // Deleting any file inside the /src folder
@@ -231,7 +227,7 @@ gulp.task('criticalcss',function(){
 // gulp copy-assets.
 gulp.task( 'copy-assets', function() {
 
-// START CUSTOMIZED ADDITIONS TO gulp copy-assets - PRESERVE THROUGH UPDATES
+// START CUSTOM ADDITIONS TO gulp copy-assets - PRESERVE THROUGH UPDATES
 
 // Copy all Font Awesome 5 Pro Fonts
 	gulp.src( paths.node + '@fortawesome/fontawesome-pro-webfonts/webfonts/*.{ttf,woff,woff2,eof,svg}' )
@@ -249,7 +245,7 @@ gulp.task( 'copy-assets', function() {
 	gulp.src( paths.node + 'owl.carousel2/dist/owl.carousel.js' )
 		.pipe(gulp.dest( paths.dev + '/js' ) );
 
-// END CUSTOMIZED ADDITIONS TO gulp copy-assets - PRESERVE THROUGH UPDATES
+// END CUSTOM ADDITIONS TO gulp copy-assets - PRESERVE THROUGH UPDATES
 
 ////////////////// All Bootstrap 4 Assets /////////////////////////
 
@@ -297,7 +293,7 @@ gulp.task( 'dist', ['clean-dist'], function() {
   .pipe( replace( '/js/jquery.slim.min.js', '/js' + paths.vendor + '/jquery.slim.min.js', { 'skipBinary': true } ) )
   .pipe( replace( '/js/popper.min.js', '/js' + paths.vendor + '/popper.min.js', { 'skipBinary': true } ) )
   .pipe( replace( '/js/skip-link-focus-fix.js', '/js' + paths.vendor + '/skip-link-focus-fix.js', { 'skipBinary': true } ) )
-	.pipe( gulp.dest( paths.dist ) );
+    .pipe( gulp.dest( paths.dist ) );
 });
 
 // Deleting any file inside the /dist folder
@@ -310,7 +306,7 @@ gulp.task( 'clean-dist', function() {
 // Copies the files to the /dist-prod folder for distribution as theme with all assets
 gulp.task( 'dist-product', ['clean-dist-product'], function() {
   return gulp.src( ['**/*', '!' + paths.bower, '!' + paths.bower + '/**', '!' + paths.node, '!' + paths.node + '/**', '!' + paths.dist, '!' + paths.dist +'/**', '!' + paths.distprod, '!' + paths.distprod + '/**', '*'] )
-	.pipe( gulp.dest( paths.distprod ) );
+    .pipe( gulp.dest( paths.distprod ) );
 } );
 
 // Deleting any file inside the /dist-product folder
